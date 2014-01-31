@@ -6,11 +6,14 @@
 *All utilities released under Creative Commons CC-BY.*
 
 This repository contains tools for cross-compiling a Python interpreter
-and the Numpy and Scipy libraries for an Intel Xeon Phi coprocessor,
-allowing you to run Python code using those libraries as a native
-executable on the coprocessor.
+and the Numpy and Scipy libraries for an Intel Xeon Phi 
+Many Integrated Core (MIC) coprocessor,
+allowing you to run Python code using those libraries as parallel native
+executables on the coprocessor, communicating and processing
+with the full power and expressivity of Python.
 
-Based on [Emilio Castillo Villar's work](http://software.intel.com/en-us/forums/topic/392736) to cross-compile Python.
+Based on [Emilio Castillo Villar's work](http://software.intel.com/en-us/forums/topic/392736)
+to cross-compile Python.
 
 Numpy was never designed to be cross-compiled for anything, much less
 a system without a compiler of its own, so much effort was placed into
@@ -21,6 +24,9 @@ After downloading the Makefile into a folder and running `make`,
 that folder will then contain `python/_install` which will be the
 `$PYTHONHOME` whose `bin/python` can be executed on the Phi.
 See `mic_task.sh` for a usage example.
+
+Tested on the Babbage cluster at NERSC as part of the MANTISSA project
+funded by the DOE Applied Math program.
 
 ## REQUIREMENTS
 
