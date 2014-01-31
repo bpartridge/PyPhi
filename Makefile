@@ -6,7 +6,7 @@ MIC_PY_PATH = $(MIC_PY_HOME)/lib/python2.7
 CTYPES = $(SRC)/Modules/_ctypes
 NP_UTILS = numpy/numpyxc.py numpy/setup.cfg numpy/site.cfg
 
-all: numpyxc
+all: $(MIC_PY_HOME) numpyxc scipyxc
 
 install:
 	@echo "To install, copy $(MIC_PY_HOME) where it can be accessed from the MIC card."
@@ -66,6 +66,13 @@ numpyclean: numpy
 	rm -rf numpy/build
 	rm -rvf numpy/**/*.o
 
+numpyutils: $(NP_UTILS)
+
+$(NP_UTILS): numpy
+	wget https://raw.github.com/bpartridge/PyPhi/master/numpyxc.py -O numpy/numpyxc.py
+	wget https://raw.github.com/bpartridge/PyPhi/master/site.cfg -O numpy/site.cfg
+	wget https://raw.github.com/bpartridge/PyPhi/master/setup.cfg -O numpy/setup.cfg
+
 numpyxc: numpy | $(MIC_PY_HOME) $(NP_UTILS)
 	# build_clib forces config.h to be created; it needs to be modified before extensions are built
 	cd numpy && PYTHONXCPREFIX=$(MIC_PY_HOME) python numpyxc.py build_clib
@@ -91,4 +98,4 @@ scipyxc: scipy | $(MIC_PY_HOME) $(NP_UTILS)
 	cp $(NP_UTILS) scipy/
 	cd scipy && PYTHONXCPREFIX=$(MIC_PY_HOME) python numpyxc.py install --prefix=$(MIC_PY_HOME)
 
-.PHONY: all micclean miccleanobjs numpyxc nose
+.PHONY: all micclean miccleanobjs numpyxc numpyclean numpyutils nose scipyxc scipyclean
