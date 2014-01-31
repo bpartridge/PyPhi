@@ -2,6 +2,7 @@
 ## Python for Scientific Computing on Intel's Xeon Phi MIC Platform
 
 *Compiled by Brenton Partridge, Harvard University*
+
 *All utilities released under Creative Commons CC-BY.*
 
 This repository contains tools for cross-compiling a Python interpreter
