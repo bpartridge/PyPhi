@@ -21,8 +21,8 @@ $(SRC): python.tgz
 
 $(SRC)/hostpython: | $(SRC)
 	# TODO: fail if patched
-	cd $< && ./configure && make
-	cd $< && mv python hostpython && mv Parser/pgen Parser/hostpgen && make distclean
+	cd $(SRC) && ./configure && make
+	cd $(SRC) && mv python hostpython && mv Parser/pgen Parser/hostpgen && make distclean
 
 xcompile.patch:
 	wget http://randomsplat.com/wp-content/uploads/2012/10/Python-$(PY_VER)-xcompile.patch -O $@
