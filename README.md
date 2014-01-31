@@ -1,10 +1,6 @@
 # PyPhi
 ## Python for Scientific Computing on Intel's Xeon Phi MIC Platform
 
-*Compiled by Brenton Partridge, Harvard University*
-
-*All utilities released under Creative Commons CC-BY.*
-
 This repository contains tools for cross-compiling a Python interpreter
 and the Numpy and Scipy libraries for an Intel Xeon Phi 
 Many Integrated Core (MIC) coprocessor,
@@ -20,13 +16,20 @@ a system without a compiler of its own, so much effort was placed into
 re-engineering it to use the "MIC" architecture and the relevant Intel MKL
 libraries. Internal testing code for Numpy and Scipy also works.
 
-After downloading the Makefile into a folder and running `make`,
-that folder will then contain `python/_install` which will be the
-`$PYTHONHOME` whose `bin/python` can be executed on the Phi.
+After downloading the Makefile into a folder and running `make`
+like the following:
+
+    mkdir -p mic
+    cd mic
+    wget https://raw.github.com/bpartridge/PyPhi/master/Makefile -N && make
+
+that folder `mic` will then contain `python/_install`, which will be the
+`$PYTHONHOME` whose `bin/python` can be executed on the Phi, and whose
+`lib/python2.7[/site-packages]` should be on `$PYTHONPATH`.
 See `mic_task.sh` for a usage example.
 
-Tested on the Babbage cluster at NERSC as part of the MANTISSA project
-funded by the DOE Applied Math program.
+Tested on the Babbage cluster at NERSC as part of the
+[MANTISSA project](https://www.nersc.gov/assets/HPC-Requirements-for-Science/ASCR2017/Prabhat-Quincey.pdf).
 
 ## REQUIREMENTS
 
@@ -66,3 +69,24 @@ funded by the DOE Applied Math program.
 
 - http://whatschrisdoing.com/blog/2009/10/16/cross-compiling-python-extensions/
 
+## License (for all utilities)
+
+Copyright (c) 2014 Brenton Partridge
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
