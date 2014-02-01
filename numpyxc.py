@@ -22,7 +22,7 @@ class IntelMICCompiler(IntelCCompiler):
 
   def __init__ (self, verbose=0, dry_run=0, force=0):
     IntelCCompiler.__init__ (self, verbose, dry_run, force)
-    compiler = "icc -mmic -mkl -fPIC -fp-model precise -g " + xcdirflags
+    compiler = "icc -mmic -mkl -fPIC -fp-model strict -g " + xcdirflags
     self.set_executables(compiler=compiler + ' -shared',
                          compiler_so=compiler,
                          compiler_cxx=compiler,
@@ -55,7 +55,7 @@ class IntelMICFCompiler(IntelFCompiler):
 
   def get_flags(self):
     # for Intel Fortran, -fp-model source is the same as precise without a compiler warning
-    return ["-fPIC -shared -mmic -mkl -fp-model source -g " + xcdirflags]
+    return ["-fPIC -shared -mmic -mkl -fp-model strict -g " + xcdirflags]
 
   def get_flags_linker_so(self):
     return self.get_flags()
